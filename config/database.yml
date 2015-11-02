@@ -1,0 +1,12 @@
+default: &default
+  host: 127.0.0.1
+  port: 30101
+  adapter: postgresql
+  encoding: unicode
+  pool: 20
+  template: template0
+  timeout: 5000
+
+development:
+  <<: *default
+  database: jsonb_tests
