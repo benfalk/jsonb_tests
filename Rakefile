@@ -5,6 +5,7 @@ require 'active_record'
 include ActiveRecord::Tasks
 load './lib/tasks/add_users.rake'
 load './lib/tasks/add_customers.rake'
+load './lib/tasks/benchmark.rake'
 
 db_dir = File.expand_path('../db', __FILE__)
 config_dir = File.expand_path('../config', __FILE__)
