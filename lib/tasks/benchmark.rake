@@ -6,6 +6,11 @@ task benchmark: :environment do
   require_relative '../customer'
   bench_both "select count(*) from tablename where details->>'contact_me' = 'true';"
   bench_both "select count(*) from tablename where details->'address'->>'state' = 'IN';"
+
+  bench_compare "JSON count with index",
+                'select count(*) from users where details @> \'{"contact_me":true}\';',
+                'select count(*) from users where details @> \'{"address":{"state":"IN"}}\';'
+
   bench_both "select AVG(cast(details->>'age' as integer)) from tablename;"
   bench_both "select DISTINCT(details->'address'->>'state') from tablename;"
   bench_both "select * from tablename limit 10000;"
